@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardImgOverlay, CardText, CardBody,
-    CardTitle } from 'reactstrap';
-
+import { Card, CardImg, CardText, CardBody,
+    CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
     
 class Dishdetail extends Component {
 
@@ -18,14 +18,19 @@ class Dishdetail extends Component {
         dish = [this.props.dish];
       //  alert(dish);
        
-      //  alert(JSON.stringify(this.props.dish));
+      alert(JSON.stringify(this.props.dish));
       if (dish != '')
-      
+        
     return (
         
 <div className='container'>
+
+      <br/>
+
    {dish.map(dish => 
-        <div className='row'>    	
+      
+     <div className='row'>    
+        
             <div className='col-lg-5'>     
 
       <Card className='container'>

@@ -10,7 +10,7 @@ import Contact from './ContactComponent';
 import { COMMENTS } from '../shared/comments';
 import { PROMOTIONS } from '../shared/promotions';
 import { LEADERS } from '../shared/leaders';
-import { BrowserRouter as Router,Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router,Routes, Route, Link,useParams } from "react-router-dom";
 
 class Main extends Component {
 
@@ -43,6 +43,7 @@ class Main extends Component {
     />
       );
     }
+    
     const MenuPage = () => {
       return(
         <Menu dishes={this.state.dishes} />
@@ -53,6 +54,13 @@ class Main extends Component {
         <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} />
       );
     }
+    const DishWithId = ({match}) => {
+     // const param = match.param.dishId;
+      return(
+          <DishDetail dish={this.state.dishes.filter((dish) => dish.id === 0)[0]} 
+            comments={this.state.comments.filter((comment) => comment.dishId === 0)} />
+      );
+    };
     const ContactPage = () => {
       return(
         <Contact/>
@@ -63,7 +71,9 @@ class Main extends Component {
     <Header />
     <Routes>
     <Route path="/home" element={ <HomePage />} />
-    <Route exact path='/menu' element={<MenuPage/>} />
+    <Route path="/menu" element={ <MenuPage />} />
+    <Route exact path='/contactus' element={<ContactPage/>} />
+    <Route path='/menu/:dishId' element={<DishWithId/>} />
     
     </Routes>
     <Footer />
