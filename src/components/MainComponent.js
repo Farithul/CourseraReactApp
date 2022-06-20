@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { Navbar, NavbarBrand } from 'reactstrap';
 import Menu from './MenuComponent';
 import DishDetail from './dishdetailComponent';
+import Header from './HeaderComponent';
+import Footer from './FooterComponent';
 import { DISHES } from '../shared/dishes';
+import Home from './HomeComponent';
+import { BrowserRouter as Router,Routes, Route, Link } from "react-router-dom";
 
 class Main extends Component {
 
@@ -23,19 +27,27 @@ class Main extends Component {
 
   render() {
 
+    const HomePage = () => {
+      return(
+          <Home/>
+      );
+    }
+    const MenuPage = () => {
+      return(
+        <Menu dishes={this.state.dishes} />
+      );
+    }
 
     return (
-      <div>
-        <Navbar dark color="primary">
-          <div className="container">
-            <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
-          </div>
-        </Navbar>
-        <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />
-        <div className='container'>
-        <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} />
-        </div>
-      </div>
+    <div>   
+    <Header />
+    <Routes>
+    <Route path="/home" element={ <HomePage />} />
+    <Route exact path='/menu' element={<MenuPage/>} />
+    </Routes>
+    <Footer />
+    </div>
+      
     );
   }
 }

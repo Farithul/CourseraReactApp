@@ -23,7 +23,7 @@ class Dishdetail extends Component {
       
     return (
         
-<div>
+<div className='container'>
    {dish.map(dish => 
         <div className='row'>    	
             <div className='col-lg-5'>     
