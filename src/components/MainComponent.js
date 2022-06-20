@@ -7,6 +7,7 @@ import Footer from './FooterComponent';
 import { DISHES } from '../shared/dishes';
 import Home from './HomeComponent';
 import Contact from './ContactComponent';
+import About from './AboutComponent';
 import { COMMENTS } from '../shared/comments';
 import { PROMOTIONS } from '../shared/promotions';
 import { LEADERS } from '../shared/leaders';
@@ -66,12 +67,18 @@ class Main extends Component {
         <Contact/>
       );
     }
+    const AboutPage = () => {
+      return(
+        <About leaders={this.state.leaders.filter((leaders) => leaders)}/>
+      );
+    }
     return (
     <div>   
     <Header />
     <Routes>
     <Route path="/home" element={ <HomePage />} />
     <Route path="/menu" element={ <MenuPage />} />
+    <Route path="/aboutus" element={ <AboutPage />} />
     <Route exact path='/contactus' element={<ContactPage/>} />
     <Route path='/menu/:dishId' element={<DishWithId/>} />
     
