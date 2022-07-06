@@ -8,6 +8,8 @@ import Contact from './ContactComponent';
 import About from './AboutComponent';
 import { BrowserRouter as Router,Routes, Route } from "react-router-dom";
 import { connect } from 'react-redux';
+import { addComment } from '../redux/ActionCreators';
+
 
 class Main extends Component {
   
@@ -60,7 +62,9 @@ class Main extends Component {
      // const param = match.param.dishId;
       return(
           <DishDetail dish={this.props.dishes.filter((dish) => dish.id === 0)[0]} 
-            comments={this.props.comments.filter((comment) => comment.dishId === 0)} />
+            comments={this.props.comments.filter((comment) => comment.dishId === 0)} 
+            addComment={this.props.addComment}
+            />
       );
     };
     const ContactPage = () => {
@@ -98,6 +102,12 @@ const mapStateToProps = state => {
     leaders: state.leaders
   }
 }
+const mapDispatchToProps = dispatch => ({
+  
+  addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment))
+
+});
+
 
 //export default Main;
 export default (connect(mapStateToProps)(Main));
